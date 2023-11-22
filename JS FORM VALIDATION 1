@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM VALIDATION</title>
+</head>
+<body>
+<DIV>
+    <form style="align-items: center;" onsubmit="event.preventDefault(); return validatedata()";>
+    <label>ENTER THE NAME:</label>
+    <input id="input" type="text" maxlength="10" placeholder="NAME"  onkeydown="return /[a-zA-Z]/i.test(event.key)" />
+    <p id="demo"></p>
+    <LABEL> ENTER YOUR EMAIL ID:</LABEL>
+    <input id="email" type="email"  placeholder="EMAIL ID"/>
+    <p id="demo1"></p>
+    <label>ENTER YOUR PASSWORD:</label>
+    <input id="pass" type="password" maxlength="10" placeholder="PASSWORD" />
+    <p id="demo2"></p>
+    <input type="submit">
+    </form>
+</DIV>
+<script>
+    function validatedata()
+    {
+        
+        var inputs = document.getElementById("input").value
+        var emails = document.getElementById("email").value
+        var password = document.getElementById("pass").value
+        var status = false;       
+     
+        if (inputs =='')
+        {
+            document.getElementById('demo').innerHTML = "*enter your name";
+            status = false;
+                     
+        }
+        else
+        {
+            document.getElementById('demo').innerHTML = "";
+            status = true;     
+        }
+        if (emails =='')
+        {
+            document.getElementById('demo1').innerHTML = "*enter your email id";
+            status = false;
+
+        }
+        else {
+            document.getElementById('demo1').innerHTML = "";
+            status = true;     
+
+          
+        }
+        if (password =='')
+        {
+            document.getElementById('demo2').innerHTML = "*enter your password";
+            status = false;
+
+           
+        }
+        else{
+            document.getElementById('demo2').innerHTML= "";
+            status = true;     
+
+           
+        }
+    
+        if(inputs!==''&&password!==''&&emails!==''){
+        alert("sucessfully submitted")
+    }     
+    }
+</script>
+<style>
+    form{
+        position: relative;
+        left: 550px;
+        top: 250px;
+    }
+    p{
+        color: red;
+        position: relative;
+        left: 380px;
+        bottom: 40px;
+    }
+</style>
+
+</body>
+</html>
