@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Form Validation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Student Registration Form</h1>
+    <div class="popup" id="popupContainer">
+        <h1 id="popup"></h1>
+    </div>
+    <form class="rightside">
+        <div class="border">
+            <label class="adjust">Name:</label>
+            <br>
+            <input id="names" type="text" placeholder="name" onkeydown="return /[a-zA-Z]/i.test(event.key)">
+            <p id="print"></p>
+            <br>
+            <label class="adjust">Email:</label>
+            <br>
+            <input type="email" id="email" placeholder="Email">
+            <p id="print1"></p>
+            <br>
+            <label>Password:</label>
+            <br>
+            <input class="adjust" id="password" type="password" placeholder="password" maxlength="10">
+            <p id="print2"></p>
+            <br>
+            <label>Choose a Department:</label>
+            <select id="department">
+                <option value="">....choose a department....</option>
+                <option value="IT">IT</option>
+                <option value="CSC">CSC</option>
+                <option value="ECE">ECE</option>
+                <option value="EEE">EEE</option>
+                <option value="AUTOMOBILE">AUTOMOBILE</option>
+                <option value="MECHANICAL">MECHANICAL</option>
+            </select>
+            <p id="print5"></p> 
+            <br>
+            <div class="move">
+                <label>Choose a Gender</label>
+                <br>
+                <div class="gens">
+                    <input class="selectgender" type="radio" name="gender" value="male">
+                    <label class="gen">Male</label>
+                    <input class="selectgender" type="radio" name="gender" value="female">
+                    <label class="gen">Female</label>
+                    <p id="print4"></p>
+                    <br>
+                </div>
+            </div>
+            <label>Description:</label>
+            <input class="moves" id="description" placeholder="Description">
+            <p id="print3"></p>
+            <br>
+            <input type="checkbox" id="agree">
+            <label class="agree" for="agree">I Agree</label>
+            <br>
+            <input class="submit" type="button" value="Submit" onclick="formvalidate()">
+            <input class="reset" type="reset" value="Reset">          
+        </div>
+    </form>
+    <script>
+        function formvalidate() {
+            var inputname = document.getElementById("names").value;
+            var pwd = document.getElementById("password").value;
+            var emails = document.getElementById("email").value;
+            var description1 = document.getElementById("description").value;
+            var genders = document.querySelectorAll('.selectgender');
+            var department = document.getElementById("department").value;
+            var em = (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(emails));
+
+            if (inputname === '') {
+                document.getElementById("print").innerHTML = "Name field is empty";
+            } else {
+                document.getElementById("print").innerHTML = "";
+            }
+
+            if (emails === '') {
+                document.getElementById("print1").innerHTML = "Email field is empty";
+            } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(emails)) {
+                document.getElementById("print1").innerHTML = "Please enter a valid email address";
+            } else {
+                document.getElementById("print1").innerHTML = "";
+            }
+
+            if (pwd === '') {
+                document.getElementById("print2").innerHTML = "Password field is empty";
+            } else {
+                document.getElementById("print2").innerHTML = "";
+            }
+
+            if (description1 === '') {
+                document.getElementById("print3").innerHTML = "Description field is empty";
+            } else {
+                document.getElementById("print3").innerHTML = "";
+            }
+
+            if (department === '') {
+                document.getElementById("print5").innerHTML = "Please select a department";
+            } else {
+                document.getElementById("print5").innerHTML = "";
+            }
+
+            var genderSelected = genders[0].checked || genders[1].checked;
+
+            if (!genderSelected) {
+                document.getElementById("print4").innerHTML = "Please select a gender";
+            } else {
+                document.getElementById("print4").innerHTML = "";
+            }
+            
+            if (inputname !== '' && emails !== '' && !em && pwd !== '' && description1 !== '' && department !== '' && genderSelected) {
+                document.getElementById("popup").innerHTML = "&#9989;Form submitted successfully!";
+                document.getElementById("popupContainer").style.display = "grid";
+                setTimeout(function () {
+            document.getElementById("popupContainer").style.display = "none";
+        }, 3000);
+    }
+}
+    </script>
+</body>
+</html>
