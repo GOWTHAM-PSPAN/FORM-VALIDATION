@@ -1,0 +1,133 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #dc7b1a;
+}
+
+h1 {
+    text-align: center;
+    color: #1a1b1c;
+    font-size: 26px;
+    margin-bottom: 12px;
+}
+
+.rightside {
+    width: 30%;
+    margin: 10px auto;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+}
+.border {
+    border: 3px solid #db9b34;
+    padding: 12px; 
+    border-radius: 8px;
+}
+
+label {
+    margin-bottom: 10px; 
+    display:contents;
+    font-size: 14px; 
+    color: #333;
+    font-weight: bold;
+}
+input[type="text"],
+input[type="password"],
+input[type="email"]{
+    width: 50%;
+    padding: 5px;
+    font-size: 12px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s;
+    position: relative;
+    left:180px;
+    bottom: 20px;
+}
+select{
+    width: 53%;
+    padding: 5px;
+    font-size: 12px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s;
+    position: relative;
+    left: 31px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+select:focus {
+    border-color: #db9034;
+}
+
+.move {
+    margin-bottom: 10px;
+    position: relative;
+    top: 20px;
+    
+}
+
+.submit,
+.reset {
+    background-color: #db8d34;
+    color: #fff;
+    padding: 10px 14px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    left:130px;
+}
+#print,#print1,#print2,#print3,#print4,#print5{
+    color: red;
+    font-size:x-small;
+}
+.gens{
+    position: relative;
+    left:200px;
+    bottom: 18px;
+}
+.moves{
+position: relative;
+left: 100px;
+width: 48%;
+padding: 5px;
+font-size: 12px;
+border: 2px solid #ccc;
+border-radius: 6px;
+transition: border-color 0.3s;
+}
+#print,#print1,#print2{
+    position: relative;
+    left: 190px;
+    bottom: 20px;
+}
+#print3,#print5{
+    margin-left: 195px;
+}
+.description{
+    position: relative;
+    right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* #popupcontainer,#popup{
+    color: rgb(111, 255, 0);
+    background-color: #fff;
+    width: 25%;
+    position: relative;
+    left: 570px;
+
+} */

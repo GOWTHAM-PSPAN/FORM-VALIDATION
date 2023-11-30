@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 1</title>
+</head>
+<body>
+   <h1>Page submitted successfully</h1>
+   <p id="displayInput"></p>
+   <p id="displayEmail"></p>
+   <p id="displaypwd"></p>
+   <p id="displaygender"></p>
+   <p id="displaydescription"></p>
+   <p id="displaydepartment"></p>
+   <script>
+    debugger
+    var urlParams = new URLSearchParams(window.location.search);
+    var inputname = urlParams.get('inputname');
+    var email = urlParams.get('email');
+    var pwd = urlParams.get('pwd');
+    var description1 = urlParams.get('description1')
+    var genders = urlParams.get('genders');
+    var department = urlParams.get('department')
+    if (inputname !== null) {
+        document.getElementById("displayInput").innerHTML = "Name: " + inputname;
+    } 
+    if (email !== null) 
+    {
+        document.getElementById("displayEmail").innerHTML = "Email: " + email;
+    }
+    if(pwd !==null)
+    {
+        document.getElementById("displaypwd").innerHTML = "password:" + pwd;
+    }
+    if(genders !==null){
+        document.getElementById("displaygender").innerHTML = "genders:" + genders;
+    }
+    if(description1 !==null){
+        document.getElementById("displaydescription").innerHTML = "description:" + description1;
+    }
+    if(department !==null){
+        document.getElementById("displaydepartment").innerHTML = "department:" + department;
+    }
+   </script>
+</body>
+</html>
