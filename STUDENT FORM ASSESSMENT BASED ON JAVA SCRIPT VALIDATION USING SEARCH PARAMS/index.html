@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Javascript Form Validation</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="PAGE1.HTML" href="PAGE1.HTML">
+    <link rel="page1.html" href="page1.html">
 </head>
 <body>
     <h1>Student Registration Form</h1>
     <div class="popup" id="popupContainer">
         <h1 id="popup"></h1>
     </div>
-    <form class="rightside">
+    <form id="formel" class="rightside">
         <div class="border">
             <label class="adjust">Name:</label>
             <br>
-            <input id="names" type="text" placeholder="name" onkeydown="return /[a-zA-Z]/i.test(event.key)">
+            <input id="names" type="text" placeholder="name" onkeydown="return /[a-z  A-Z]/i.test(event.key)">
             <p id="print"></p>
             <br>
             <label class="adjust">Email:</label>
@@ -39,15 +39,15 @@
                 <option value="AUTOMOBILE">AUTOMOBILE</option>
                 <option value="MECHANICAL">MECHANICAL</option>
             </select>
-            <p id="print5"></p> 
+            <p id="print5"></p>
             <br>
             <div class="move">
                 <label>Choose a Gender</label>
                 <br>
                 <div class="gens">
-                    <input id="selectgender" type="radio" name="gender" value="male">
+                    <input class="selectgender" type="radio" name="gender" value="male">
                     <label class="gen">Male</label>
-                    <input id="selectgender" type="radio" name="gender" value="female">
+                    <input class="selectgender" type="radio" name="gender" value="female">
                     <label class="gen">Female</label>
                     <p id="print4"></p>
                     <br>
@@ -57,91 +57,146 @@
             <input class="moves" id="description" placeholder="Description">
             <p id="print3"></p>
             <br>
-            <input type="checkbox" id="agree">
-            <label class="agree" for="agree">I Agree</label>
             <br>
-            <input class="submit" type="button" value="Submit" onclick="formvalidate()">
-            <input class="reset" type="reset" value="Reset"> 
+            <input class="submit" type="button" value="Submit" onclick="SubmitDataForm()">
+            <input class="reset" type="reset" value="Reset">
+            <button type="submit" class="update" onclick="updateData()"> Update </button>            
         </div>
     </form>
     <script>
-        function formvalidate()        
-        {
-            debugger
+    function SubmitDataForm() {
+    debugger;
+    var inputname = document.getElementById("names").value;
+    var pwd = document.getElementById("password").value;
+    var emails = document.getElementById("email").value;
+    var description1 = document.getElementById("description").value;
+    var department = document.getElementById("department").value;
+    var gender = document.querySelector('.selectgender:checked');
+    var em = (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(emails));
 
-            var formel = document.querySelector('.rightside');
-        
-            var inputname = document.getElementById("names").value;
-            var pwd = document.getElementById("password").value;
-            var emails = document.getElementById("email").value;
-            var description1 = document.getElementById("description").value;
-            var genders = document.getElementById('selectgender').value;
-            var department = document.getElementById("department").value;
-            var em = (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(emails));
-            if (inputname === '') {
-                document.getElementById("print").innerHTML = "Name field is empty";
-            } else {
-                document.getElementById("print").innerHTML = "";
-            }
-            if (emails === '') {
-                document.getElementById("print1").innerHTML = "Email field is empty";
-            } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(emails)) {
-                document.getElementById("print1").innerHTML = "Please enter a valid email address";
-            } else {
-                document.getElementById("print1").innerHTML = "";
-            }
+    if (inputname === '') {
+        document.getElementById("print").innerHTML = "Name field is empty";
+    } else {
+        document.getElementById("print").innerHTML = "";
+    }
 
-            if (pwd === '') {
-                document.getElementById("print2").innerHTML = "Password field is empty";
-            } else {
-                document.getElementById("print2").innerHTML = "";
-            }
+    if (emails === '') {
+        document.getElementById("print1").innerHTML = "Email field is empty";
+    } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(emails)) {
+        document.getElementById("print1").innerHTML = "Please enter a valid email address";
+    } else {
+        document.getElementById("print1").innerHTML = "";
+    }
 
-            if (description1 === '') {
-                document.getElementById("print3").innerHTML = "Description field is empty";
-            } else {
-                document.getElementById("print3").innerHTML = "";
-            }
+    if (pwd === '') {
+        document.getElementById("print2").innerHTML = "Password field is empty";
+    } else {
+        document.getElementById("print2").innerHTML = "";
+    }
 
-            if (department === '') {
-                document.getElementById("print5").innerHTML = "Please select a department";
-            } else {
-                document.getElementById("print5").innerHTML = "";
-            }
-            if (!genders) {
-                document.getElementById("print4").innerHTML = "Please select a gender";
-            } else {
-                document.getElementById("print4").innerHTML = "";
-            }          
-            if (inputname !== '' && emails !== '' && !em && pwd !== '' && description1 !== '' && department !== '' && genders)            
-            {
-            var encodedInputname = encodeURIComponent(inputname);
-            var encodedEmail = encodeURIComponent(emails);
-            var encodedpassword = encodeURIComponent(pwd);
-            var encodedgender = encodeURIComponent(genders);
-            var encodeddescription = encodeURIComponent(description1);
-            var encodeddepartment = encodeURIComponent(department)
-            window.location.href = "page1.html?inputname=" + encodedInputname + "&email=" + encodedEmail + "&pwd=" + encodedpassword + "&genders=" + encodedgender + "&description1=" + encodeddescription + "&department=" + encodeddepartment;
+    if (description1 === '') {
+        document.getElementById("print3").innerHTML = "Description field is empty";
+    } else {
+        document.getElementById("print3").innerHTML = "";
+    }
+
+    if (department === '') {
+        document.getElementById("print5").innerHTML = "Please select a department";
+    } else {
+        document.getElementById("print5").innerHTML = "";
+    }
+
+    if (!gender) {
+        document.getElementById("print4").innerHTML = "Please select a gender";
+    } else {
+        document.getElementById("print4").innerHTML = "";
+    }
+
+    if (inputname !== '' && emails !== '' && !em && pwd !== '' && description1 !== '' && department !== '' && gender) {
+        var formel = document.querySelector('.rightside');
+        let jsonData = {};
+        jsonData.name = document.getElementById('names').value;
+        jsonData.email = document.getElementById('email').value;
+        jsonData.pwd = document.getElementById('password').value;
+        jsonData.department = document.getElementById('department').value;
+        jsonData.gender = gender.value;
+        jsonData.description = document.getElementById('description').value;
+        jsonData = JSON.stringify(jsonData);
+
+        fetch('http://localhost:3000/posts', {
+                method: 'POST',
+                headers: {
+                    'content-Type': 'application/json'
+                },
+                body: jsonData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Data sent successfully:', data);
+                window.location.href = "PAGE1.HTML?input=" + encodeURIComponent(data);
+            })
+            .catch(error => {
+                console.error('Error sending data:', error);
+            });
+    }
+}
+var urlParams = new URLSearchParams(window.location.search);
+var userid = urlParams.get('userdetails');
+function fetchDataById(id){
+    fetch(`http://localhost:3000/posts/${id}`,{
+            method:'GET',
+            headers:{
+                'content-Type':'application/json'
+            },
+        })
+        .then(response => response.json())
+        .then(data => { 
+                document.getElementById('names').value = data.name;
+                document.getElementById('email').value = data.email;
+                document.getElementById('password').value = data.pwd;
+                document.getElementById('department').value = data.department;
+                var genderRadio = document.getElementsByName('gender');
+                genderRadio.forEach(radio => {
+                    if (radio.value === data.gender) {
+                        radio.checked = true;
+                    }
+                });
+
+                document.getElementById('description').value = data.description;
+            })
+    .catch(error => {
+        console.error('Error fetching data:',error);
+    });
+}
+if (userid) {
+            fetchDataById(userid);
         }
-       }
-        
-        
-</script>
+
+        function updateData() {
+            let jsonData={}
+       jsonData.name = document.getElementById('names').value;
+       jsonData.email = document.getElementById('email').value;
+       jsonData.pwd = document.getElementById('password').value;
+       jsonData.department = document.getElementById('department').value;
+       jsonData.gender = document.querySelector('.selectgender:checked').value;
+       jsonData.description = document.getElementById('description').value;
+       jsonData=JSON.stringify(jsonData)
+            fetch(`http://localhost:3000/posts/${userid}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body:(jsonData)
+            })
+            .then(response => response.json())
+            .then(updatedData => {
+                window.location.href = `PAGE1.HTML?`;
+                console.log('Data updated successfully:',updatedData);
+            })
+            .catch(error => {
+                console.error('Error updating data:',error);
+            });
+        }
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-<!-- TIMEOUT FUNCTION{
-document.getElementById("popup").innerHTML = "&#9989;Form submitted successfully!";
-                document.getElementById("popupContainer").style.display = "grid";
-                setTimeout(function () {
-            document.getElementById("popupContainer").style.display = "none";
-        }, 3000); -->
